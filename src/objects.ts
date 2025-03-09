@@ -28,10 +28,10 @@ function createBook(
 ): Book {
   // write your code here...
   return {
-    title: title,
-    author: author,
-    publishedYear: publishedYear,
-    genre: genre,
+    title,
+    author,
+    publishedYear,
+    genre,
   }; // replace "{} as Book" with what you see is fit
 }
 
@@ -138,12 +138,12 @@ function updatePublishedYear(book: Book, newYear: number): Book {
  */
 function addSecondAuthor(book: Book, additionalAuthor: string): Book {
   // write your code here...
-  return {
-    ...book,
-    author: Array.isArray(book.author)
-      ? [...book.author, additionalAuthor]
-      : [book.author, additionalAuthor],
-  };
+  if (Array.isArray(book.author)) {
+    book.author.push(additionalAuthor);
+  } else {
+    book.author = [book.author, additionalAuthor];
+  }
+  return book;
 }
 
 export {
